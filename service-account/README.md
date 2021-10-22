@@ -1,20 +1,23 @@
 #### Usage
 Only the release number needs to be modified.
 ```hcl
-module "namespace" {
-  source         = "git::https://github.com/goldstrike77/terraform-module-kubernetes.git//namespace?ref=v0.1"
-  namespace_spec = var.namespace_spec
-  annotations    = var.annotations
-  labels         = var.labels
+module "serviceaccount" {
+  source              = "git::https://github.com/goldstrike77/terraform-module-kubernetes.git//service-account?ref=v0.1"
+  serviceaccount_spec = var.serviceaccount_spec
+  annotations         = var.annotations
+  labels              = var.labels
+  namespace           = module.namespace.namespace_id
 }
 ```
 
 #### Variables
 There are some variables that can (Or needs to) be overridden:
 ```hcl
-variable "namespace_spec" {
+variable "serviceaccount_spec" {
   default = {
-    name = "test"
+    user = "loki"
+    pass = "changeme"
+    type = "Opaque"
     annotations = {
       identify = "false"
     }
