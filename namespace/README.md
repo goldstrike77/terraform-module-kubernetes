@@ -26,7 +26,7 @@ variable "namespace_spec" {
 
 variable "annotations" {
   default = {
-    imageregistry: "https://hub.docker.com/"
+    imageregistry = "https://hub.docker.com/"
   }
 }
 
