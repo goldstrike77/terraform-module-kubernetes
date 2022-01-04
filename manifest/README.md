@@ -1,0 +1,20 @@
+```hcl
+    manifest = <<YAML
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: longhorn
+  namespace: longhorn-system
+  labels:
+    name: longhorn
+spec:
+  selector:
+    matchLabels:
+      app: longhorn-manager
+  namespaceSelector:
+    matchNames:
+    - longhorn-system
+  endpoints:
+  - port: manager
+YAML
+```
