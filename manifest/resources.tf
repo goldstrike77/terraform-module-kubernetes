@@ -1,11 +1,4 @@
-terraform {
-  required_providers {
-    kubectl = {
-      source  = "gavinbunney/kubectl"
-    }
-  }
-}
-
-resource "kubectl_manifest" "manifest" {
-  yaml_body = var.deploy_spec.manifest
+resource "kubernetes_manifest" "manifest" {
+  count = length(local.yamls)
+  manifest = local.yamls[count.index]
 }
