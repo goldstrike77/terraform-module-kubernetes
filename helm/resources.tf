@@ -7,4 +7,5 @@ resource "helm_release" "release" {
   chart = each.value.chart
   version = each.value.version
   values = lookup(each.value, "values", []) == [] ? [] : [file(each.value.values)]
+  wait = false
 }
